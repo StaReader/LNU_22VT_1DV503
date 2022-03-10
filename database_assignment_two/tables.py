@@ -25,7 +25,6 @@ def create_table_users(cursor):
                     "last_name VARCHAR(20),"
                     "phone_number VARCHAR(20),"
                     "e_mail VARCHAR(30),"
-                    "num_reviews INT,"
                     "PRIMARY KEY(user_id))")
 
     create_table(cursor, users_querie)
@@ -38,7 +37,6 @@ def create_table_games(cursor):
                     "release_date VARCHAR(20),"
                     "developer VARCHAR(100),"
                     "publisher VARCHAR(100),"
-                    "category VARCHAR(30),"
                     "PRIMARY KEY(game_id))")
 
     create_table(cursor, games_querie)
