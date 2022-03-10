@@ -9,13 +9,13 @@ from data import *
 from queries import *
 
 # Connect to phpMyAdmin
-cnx = mysql.connector.connect(  user='user',
-                                password='password',
-                                host='host',
-                                port='port'
+cnx = mysql.connector.connect(  user='root',
+                                password='root',
+                                host='localhost',
+                                port='8889'
                              )
 
-DATABASE = 'DATABASE'
+DATABASE = 'assignment2'
 cursor = cnx.cursor()
 
 # Create database
