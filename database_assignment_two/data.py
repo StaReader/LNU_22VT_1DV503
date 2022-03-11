@@ -16,9 +16,10 @@ def insert_users_data(cursor, cnx):
                            "first_name,"
                            "last_name,"
                            "phone_number,"
-                           "e_mail)"
-                           "VALUES (%s,%s,%s,%s,%s);",
-                           (row[0], row[1], row[2], row[3], row[4]))
+                           "e_mail,"
+                           "pin)"
+                           "VALUES (%s,%s,%s,%s,%s,%s);",
+                           (row[0], row[1], row[2], row[3], row[4], row[5]))
         except mysql.connector.Error as err:
             print(err.msg)
         else:

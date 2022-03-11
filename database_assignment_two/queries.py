@@ -1,3 +1,4 @@
+# This file contains all queries.
 
 import mysql.connector
 from mysql.connector import errorcode
@@ -6,7 +7,7 @@ from mysql.connector import errorcode
 def print_users(cursor):
     cursor.execute( """
                     SELECT user_name
-                    FROM users
+                    FROM public_users
                     """)
     print('\n'*20)
     print('User name')
@@ -14,13 +15,21 @@ def print_users(cursor):
     for name in cursor:
         print(name[0])
 
+# Create view for users
+def create_view_users(cursor):
+    cursor.execute( """
+                    CREATE VIEW public_users AS
+                    SELECT user_name, first_name, last_name, phone_number, e_mail
+                    FROM users
+                    """)
+
 # User information
 def print_user_info(cursor):
     try:
         name = input('Enter user name: ')
         cursor.execute(f"""
                         SELECT first_name, last_name, phone_number, e_mail
-                        FROM users
+                        FROM public_users
                         WHERE user_name = '{name}'
                         """)
         print('\n'*20)
@@ -85,7 +94,7 @@ def print_reviews(cursor):
 
 
 # Average rating of game
-def get_games_rating(cursor):
+def get_top_games(cursor):
     cursor.execute(f"""
                     SELECT ROUND(AVG(reviews.rating),2) AS av, games.title
                     FROM reviews
@@ -102,7 +111,7 @@ def get_games_rating(cursor):
         print(f"{dec!s:11s}{title}")
 
 #  Count the amount of reviews each user have written.
-def get_user_reviews_count(cursor):
+def get_top_users(cursor):
     cursor.execute(f"""
                     SELECT COUNT(reviews.user) AS cn, user_name
                     FROM reviews
@@ -120,7 +129,7 @@ def get_user_reviews_count(cursor):
         print(f"{num!s:11s}{name}")
 
 # Get the category that is mostly used in the games of the database
-def get_max_category(cursor):
+def get_first_genre(cursor):
     cursor.execute(f"""
                     SELECT genres.name, COUNT(genres.name) AS cn
                     FROM genres

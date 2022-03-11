@@ -25,6 +25,7 @@ def create_table_users(cursor):
                     "last_name VARCHAR(20),"
                     "phone_number VARCHAR(20),"
                     "e_mail VARCHAR(30),"
+                    "pin VARCHAR(12),"
                     "PRIMARY KEY(user_id))")
 
     create_table(cursor, users_querie)

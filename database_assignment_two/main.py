@@ -48,6 +48,7 @@ except mysql.connector.Error as err:
         insert_review_data(cursor, cnx)
         insert_types_data(cursor, cnx)
         insert_genres_data(cursor, cnx)
+        create_view_users(cursor)
     else:
         print(err)
 
@@ -82,13 +83,13 @@ while choose != 0:
             print_reviews(cursor)
             msc.getch()
         elif(choose == 5):
-            get_games_rating(cursor)
+            get_top_games(cursor)
             msc.getch()
         elif(choose == 6):
-            get_user_reviews_count(cursor)
+            get_top_users(cursor)
             msc.getch()
         elif(choose == 7):
-            get_max_category(cursor)
+            get_first_genre(cursor)
             msc.getch()
     except:
         print('')
